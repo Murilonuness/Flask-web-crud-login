@@ -53,16 +53,16 @@ HealthProject/
 ## 🖥️ Preview do Projeto
 
 ### 🔹 Página de Login
-![Login](static/media/login.jpg)
+![Login](/static/css/media/login.jpg)
 
 ### 🔹 Página de Cadastro
-![Cadastro](static/media/cadastro.jpg)
+![Cadastro](/static/css/media/cadastro.jpg)
 
 ### 🔹 Página Inicial
-![Home](static/media/pag_inicial.jpg)
+![Home](/static/css/media/pag_inicial.jpg)
 
 ### 🔹 Painel Administrativo
-![Admin](static/media/pag_adm.jpg)
+![Admin](/static/css/media/pag_adm.jpg)
 
 ---
 
