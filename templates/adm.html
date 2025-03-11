@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Empresa Saúde - Admin</title>
+    <link rel="stylesheet" href="/static/css/adm.css">
+</head>
+<body>
+    <div class="painel-adm">
+        <h2>Gerenciamento de Usuários</h2>
+
+        <div class="linha">
+            <div class="container">
+                <form action='/adm/cadastrar' method="POST">
+                    <h3>Cadastro</h3>
+                    <input type='text' name='nome' required placeholder='Nome'><br>
+                    <input type='text' name='segundoNome' required placeholder='Sobrenome'><br>
+                    <input type='email' name='email' required placeholder='E-mail'><br>
+                    <input type='password' name='senha' required placeholder='Senha'><br>
+                    <button type='submit'>Cadastrar</button>
+                </form>
+            </div>
+            <div class="container">
+                <form action='/adm/banir' method='POST'>
+                    <h3>Banimento</h3>
+                    <input type='email' name='email' required placeholder='E-mail do usuário'><br>
+                    <button type='submit'>Banir</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="container tabela-usuarios">
+            <h3>Usuários Cadastrados</h3>
+            <form method="GET" action="{{ url_for('adm_route.adm_home') }}">
+                <input type="text" name="pesquisa" placeholder="Pesquisar por e-mail" value="{{ termo_pesquisa }}">
+                <button type="submit">Buscar</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                        <tr>
+                            <td>{{ usuario.nome }}</td>
+                            <td>{{ usuario.segundoNome }}</td>
+                            <td>{{ usuario.email }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">Nenhum usuário encontrado.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <form action="{{ url_for('adm_route.logout') }}" method="POST">
+            <button type="submit" class="logout">Logout</button>
+        </form>
+
+        <div class="paginacao">
+            {% if pagina > 1 %}
+                <a href="{{ url_for('adm_route.adm_home', pagina=pagina-1, pesquisa=termo_pesquisa) }}" class="pagina-btn">←</a>
+            {% endif %}
+            {% if pagina < total_paginas %}
+                <a href="{{ url_for('adm_route.adm_home', pagina=pagina+1, pesquisa=termo_pesquisa) }}" class="pagina-btn">→</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
